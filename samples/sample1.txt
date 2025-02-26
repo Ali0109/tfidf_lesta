@@ -1,0 +1,3 @@
+This is a sample text file. It contains several sentences to test the TF-IDF application.
+The text is simple and short. It is intended to provide a basic example.
+Feel free to modify the content to test different aspects of text processing.

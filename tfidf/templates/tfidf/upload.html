@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TF-IDF Анализатор</title>
+    <style>
+        table { border-collapse: collapse; }
+        table, th, td { border: 1px solid #ccc; padding: 8px; }
+    </style>
+</head>
+
+<body>
+    <h1>Загрузка текстового файла для анализа TF-IDF</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Загрузить</button>
+    </form>
+
+    {% if words_data %}
+        <h2>Топ-50 слов, отсортированных по убыванию IDF</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Слово</th>
+                    <th>TF (Частота)</th>
+                    <th>IDF (Обратная частота)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word, tf, idf in words_data %}
+                    <tr>
+                        <td>{{ word }}</td>
+                        <td>{{ tf }}</td>
+                        <td>{{ idf|floatformat:2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
