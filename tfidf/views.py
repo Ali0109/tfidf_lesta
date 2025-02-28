@@ -24,14 +24,14 @@ class ProcessText:
         return tf
 
     def __get_idf(self) -> dict:
-        sentences = re.split(r'[.!?]+', self.text)
-        sentences = [s.strip() for s in sentences if s.strip()]
+        split_text = re.split(r'[.!?]+', self.text)
+        sentences = [s.strip() for s in split_text if s.strip()]
 
         N = len(sentences) if sentences else 1
 
         df = {}
         for s in sentences:
-            s_words = set(re.findall(r'\b\w+\b', s.lower()))
+            s_words = set(re.findall(r'\b\w+\b', s))
             for word in s_words:
                 df[word] = df.get(word, 0) + 1
 
